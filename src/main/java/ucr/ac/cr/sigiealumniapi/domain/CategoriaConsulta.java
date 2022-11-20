@@ -1,8 +1,6 @@
 package ucr.ac.cr.sigiealumniapi.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -11,7 +9,8 @@ public class CategoriaConsulta {
     private String id;
     private String nombre;
 
-    public CategoriaConsulta(){}
+    public CategoriaConsulta() {
+    }
 
     public CategoriaConsulta(String id, String nombre) {
         this.id = id;
@@ -33,4 +32,6 @@ public class CategoriaConsulta {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+
 }
