@@ -34,9 +34,6 @@ public class ConsultaMejora {
 
     @ManyToOne
     @JoinColumn(name = "area_disciplinar_id")
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id") //Evita los ciclos de reperencias circulares
     private AreaDisciplinar areaDisciplinar;
 
     @ManyToOne

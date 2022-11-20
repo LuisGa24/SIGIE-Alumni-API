@@ -12,7 +12,7 @@ public class PlanEstudio {
     private String id;
     private String codCarrera;
     private String nombreCarrera;
-    private int anoAprovacion;
+    private int anoAprobacion;
 
     @OneToOne
     @JoinColumn(name = "coordinador_id")
@@ -39,11 +39,11 @@ public class PlanEstudio {
     public PlanEstudio() {
     }
 
-    public PlanEstudio(String id, String codCarrera, String nombreCarrera, int anoAprovacion, PersonaCoordinadora coordinador, List<AreaDisciplinar> areasDisciplinares, List<PersonaGraduada> personasGraduadas) {
+    public PlanEstudio(String id, String codCarrera, String nombreCarrera, int anoAprobacion, PersonaCoordinadora coordinador, List<AreaDisciplinar> areasDisciplinares, List<PersonaGraduada> personasGraduadas) {
         this.id = id;
         this.codCarrera = codCarrera;
         this.nombreCarrera = nombreCarrera;
-        this.anoAprovacion = anoAprovacion;
+        this.anoAprobacion = anoAprobacion;
         this.coordinador = coordinador;
         this.areasDisciplinares = areasDisciplinares;
         this.personasGraduadas = personasGraduadas;
@@ -73,12 +73,12 @@ public class PlanEstudio {
         this.nombreCarrera = nombreCarrera;
     }
 
-    public int getAnoAprovacion() {
-        return anoAprovacion;
+    public int getAnoAprobacion() {
+        return anoAprobacion;
     }
 
-    public void setAnoAprovacion(int anoAprovacion) {
-        this.anoAprovacion = anoAprovacion;
+    public void setAnoAprobacion(int anoAprobacion) {
+        this.anoAprobacion = anoAprobacion;
     }
 
     public PersonaCoordinadora getCoordinador() {
