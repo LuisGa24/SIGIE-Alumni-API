@@ -23,9 +23,6 @@ public class PlanEstudio {
 
     @OneToMany
     @JoinColumn(name = "planestudio_id")
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id") //Evita los ciclos de reperencias circulares
     private List<AreaDisciplinar> areasDisciplinares;
 
     @ManyToMany
