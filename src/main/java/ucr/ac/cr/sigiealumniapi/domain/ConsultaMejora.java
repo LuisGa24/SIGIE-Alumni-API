@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 public class ConsultaMejora {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String titulo;
     private String objetivo;

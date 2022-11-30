@@ -7,8 +7,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+
 public class Recinto {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String nombre;
     private String direccion;

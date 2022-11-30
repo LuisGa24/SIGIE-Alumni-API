@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 public class PlanEstudio {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String codCarrera;
     private String nombreCarrera;

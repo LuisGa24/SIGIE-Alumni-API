@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 public class PersonaGraduada {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String nombre;
     private String apellidos;

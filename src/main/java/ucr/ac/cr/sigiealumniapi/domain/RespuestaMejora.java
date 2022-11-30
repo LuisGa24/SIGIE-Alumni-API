@@ -3,14 +3,12 @@ package ucr.ac.cr.sigiealumniapi.domain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class RespuestaMejora {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String propuesta;
 
