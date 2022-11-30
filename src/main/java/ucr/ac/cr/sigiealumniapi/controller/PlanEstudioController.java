@@ -22,7 +22,7 @@ public class PlanEstudioController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<PlanEstudio> get(@PathVariable Integer id) {
+    public ResponseEntity<PlanEstudio> get(@PathVariable int id) {
         try {
             PlanEstudio planEstudio = planEstudioService.get(id);
             return new ResponseEntity<PlanEstudio>(planEstudio, HttpStatus.OK);
@@ -43,7 +43,7 @@ public class PlanEstudioController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable int id) {
         planEstudioService.delete(id);
     }
 }

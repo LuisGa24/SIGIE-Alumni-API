@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class ConsultaMejora {
     @Id
-    private String id;
+    private int id;
     private String titulo;
     private String objetivo;
     private String instrucciones;
@@ -53,7 +53,7 @@ public class ConsultaMejora {
     public ConsultaMejora() {
     }
 
-    public ConsultaMejora(String id, String titulo, String objetivo, String instrucciones, Date fechaFinalizacion, int anoGraduacionMax, int anoGraduacionMin, String nombrePersonaResponsableConsulta, String apellidosPersonaResponsableConsulta, String correoPersonaResponsableConsulta, List<Recinto> recintos, AreaDisciplinar areaDisciplinar, PlanEstudio planEstudio, List<RespuestaMejora> respuestas) {
+    public ConsultaMejora(int id, String titulo, String objetivo, String instrucciones, Date fechaFinalizacion, int anoGraduacionMax, int anoGraduacionMin, String nombrePersonaResponsableConsulta, String apellidosPersonaResponsableConsulta, String correoPersonaResponsableConsulta, List<Recinto> recintos, AreaDisciplinar areaDisciplinar, PlanEstudio planEstudio, List<RespuestaMejora> respuestas) {
         this.id = id;
         this.titulo = titulo;
         this.objetivo = objetivo;
@@ -70,11 +70,11 @@ public class ConsultaMejora {
         this.respuestas = respuestas;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

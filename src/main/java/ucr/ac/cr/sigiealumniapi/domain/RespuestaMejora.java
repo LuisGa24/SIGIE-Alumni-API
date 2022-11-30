@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class RespuestaMejora {
     @Id
-    private String id;
+    private int id;
     private String propuesta;
 
 
@@ -41,7 +41,7 @@ public class RespuestaMejora {
     public RespuestaMejora() {
     }
 
-    public RespuestaMejora(String id, String propuesta, CategoriaConsulta categoriaConsulta, ConsultaMejora consultaMejora, PersonaGraduada autor) {
+    public RespuestaMejora(int id, String propuesta, CategoriaConsulta categoriaConsulta, ConsultaMejora consultaMejora, PersonaGraduada autor) {
         this.id = id;
         this.propuesta = propuesta;
         this.categoriaConsulta = categoriaConsulta;
@@ -49,11 +49,11 @@ public class RespuestaMejora {
         this.autor = autor;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

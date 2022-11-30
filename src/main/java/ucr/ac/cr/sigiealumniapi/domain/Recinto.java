@@ -9,24 +9,19 @@ import java.util.List;
 @Entity
 public class Recinto {
     @Id
-    private String id;
+    private int id;
     private String nombre;
     private String direccion;
     private String numTelefono;
     private String sitioWeb;
 
-    @ManyToMany
-    @JoinTable(
-            name = "recinto_personagraduada",
-            joinColumns = {@JoinColumn(name = "recinto_id")},
-            inverseJoinColumns = {@JoinColumn(name = "personagraduada_id")}
-    )
+    @OneToMany(mappedBy = "recinto")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id") //Evita los ciclos de reperencias circulares
     private List<PersonaGraduada> personasGraduadas;
 
-    public Recinto(String id, String nombre, String direccion, String numTelefono, String sitioWeb, List<PersonaGraduada> personasGraduadas) {
+    public Recinto(int id, String nombre, String direccion, String numTelefono, String sitioWeb, List<PersonaGraduada> personasGraduadas) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -39,11 +34,11 @@ public class Recinto {
 
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
