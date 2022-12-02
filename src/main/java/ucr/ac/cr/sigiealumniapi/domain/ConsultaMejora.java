@@ -41,7 +41,8 @@ public class ConsultaMejora {
     @JoinColumn(name = "plan_estudio_id")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id") //Evita los ciclos de reperencias circulares
+            property = "id",
+            scope = PlanEstudio.class) //Evita los ciclos de reperencias circulares
     private PlanEstudio planEstudio;
 
     @OneToMany(mappedBy = "consultaMejora")
@@ -50,11 +51,20 @@ public class ConsultaMejora {
             property = "id") //Evita los ciclos de reperencias circulares
     private List<RespuestaMejora> respuestas;
 
+    @ManyToMany
+    @JoinTable(
+            name = "consultamejora_categoriaconsulta",
+            joinColumns = {@JoinColumn(name = "consultamejora_id")},
+            inverseJoinColumns = {@JoinColumn(name = "categoriaconsulta_id")}
+    )
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id",
+            scope = CategoriaConsulta.class) //Evita los ciclos de reperencias circulares
+    private List<CategoriaConsulta> categoriasConsulta;
 
-    public ConsultaMejora() {
-    }
 
-    public ConsultaMejora(int id, String titulo, String objetivo, String instrucciones, Date fechaFinalizacion, int anoGraduacionMax, int anoGraduacionMin, String nombrePersonaResponsableConsulta, String apellidosPersonaResponsableConsulta, String correoPersonaResponsableConsulta, List<Recinto> recintos, AreaDisciplinar areaDisciplinar, PlanEstudio planEstudio, List<RespuestaMejora> respuestas) {
+    public ConsultaMejora(int id, String titulo, String objetivo, String instrucciones, Date fechaFinalizacion, int anoGraduacionMax, int anoGraduacionMin, String nombrePersonaResponsableConsulta, String apellidosPersonaResponsableConsulta, String correoPersonaResponsableConsulta, List<Recinto> recintos, AreaDisciplinar areaDisciplinar, PlanEstudio planEstudio, List<RespuestaMejora> respuestas, List<CategoriaConsulta> categoriasConsulta) {
         this.id = id;
         this.titulo = titulo;
         this.objetivo = objetivo;
@@ -69,6 +79,11 @@ public class ConsultaMejora {
         this.areaDisciplinar = areaDisciplinar;
         this.planEstudio = planEstudio;
         this.respuestas = respuestas;
+        this.categoriasConsulta = categoriasConsulta;
+    }
+
+    public ConsultaMejora() {
+
     }
 
     public int getId() {
@@ -181,5 +196,13 @@ public class ConsultaMejora {
 
     public void setRespuestas(List<RespuestaMejora> respuestas) {
         this.respuestas = respuestas;
+    }
+
+    public List<CategoriaConsulta> getCategoriasConsulta() {
+        return categoriasConsulta;
+    }
+
+    public void setCategoriasConsulta(List<CategoriaConsulta> categoriasConsulta) {
+        this.categoriasConsulta = categoriasConsulta;
     }
 }
