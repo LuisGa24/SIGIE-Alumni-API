@@ -22,7 +22,7 @@ public class ConsultaMejora {
     private String apellidosPersonaResponsableConsulta;
     private String correoPersonaResponsableConsulta;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.ALL}) /////////////////////////////////////////////////////////////////////////////
     @JoinTable(
             name = "consultamejora_recinto",
             joinColumns = {@JoinColumn(name = "consultamejora_id")},
@@ -33,11 +33,11 @@ public class ConsultaMejora {
             property = "id") //Evita los ciclos de reperencias circulares
     private List<Recinto> recintos;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL}) /////////////////////////////////////////////////////////////////////////////
     @JoinColumn(name = "area_disciplinar_id")
     private AreaDisciplinar areaDisciplinar;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL}) /////////////////////////////////////////////////////////////////////////////
     @JoinColumn(name = "plan_estudio_id")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
