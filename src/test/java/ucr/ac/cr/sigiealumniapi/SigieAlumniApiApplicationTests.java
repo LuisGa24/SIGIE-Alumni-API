@@ -1,17 +1,20 @@
 package ucr.ac.cr.sigiealumniapi;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import ucr.ac.cr.sigiealumniapi.domain.*;
-import ucr.ac.cr.sigiealumniapi.repository.AreaDisciplinarRepository;
 import ucr.ac.cr.sigiealumniapi.repository.ConsultaMejoraRepository;
+import ucr.ac.cr.sigiealumniapi.repository.RecintoRepository;
 
+import java.math.BigInteger;
 import java.sql.Date;
 import java.util.*;
 
@@ -20,7 +23,9 @@ import java.util.*;
 class SigieAlumniApiApplicationTests {
 
     @Autowired
-    private ConsultaMejoraRepository repositorio;
+    private ConsultaMejoraRepository repositorioConsulta;
+    @Autowired
+    private RecintoRepository repositorioRecinto;
 
     @Test
     void contextLoads() {
@@ -28,7 +33,7 @@ class SigieAlumniApiApplicationTests {
 
     @Test
     @Rollback(false)
-    public void guardarConsulta() {
+    public void testGuardarConsulta() {
         //Creación de espacios necesarios para salvar
         PlanEstudio planEstudio = new PlanEstudio();
         List<PersonaGraduada> personaGraduada = new ArrayList<PersonaGraduada>();
@@ -51,7 +56,16 @@ class SigieAlumniApiApplicationTests {
                 "Debe rellenar los espacios según considere necesario", fechaPublicacion, 2019, 2017
                 , "Joseph", "Martinez", "j.martinez@ucr.ac.cr",
                 recintos, areaDisciplinar, planEstudio, respuestas, categoriasConsulta);
-        ConsultaMejora consultaGuardada = repositorio.save(consulta);
+        ConsultaMejora consultaGuardada = repositorioConsulta.save(consulta);
         assertNotNull(consultaGuardada);
+    }
+
+    @Test
+    public void testListarRecintos(){
+        List<Recinto> recintos = (List<Recinto>) repositorioRecinto.findAll();
+        for (Recinto recinto:recintos){
+            System.out.println(recinto);
+        }
+        assertThat(recintos).size().isGreaterThan(0);
     }
 }

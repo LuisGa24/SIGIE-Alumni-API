@@ -83,4 +83,13 @@ public class Recinto {
     public void setPersonasGraduadas(List<PersonaGraduada> personasGraduadas) {
         this.personasGraduadas = personasGraduadas;
     }
+
+    @Override
+    public String toString() {
+        return "Recinto{" +
+                "Id=" + id +
+                ", Nombre='" + nombre + '\'' +
+                ", Direccion='" + direccion + '\'' +
+                '}';
+    }
 }
