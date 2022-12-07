@@ -1,10 +1,5 @@
 package ucr.ac.cr.sigiealumniapi;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -14,9 +9,13 @@ import ucr.ac.cr.sigiealumniapi.domain.*;
 import ucr.ac.cr.sigiealumniapi.repository.ConsultaMejoraRepository;
 import ucr.ac.cr.sigiealumniapi.repository.RecintoRepository;
 
-import java.math.BigInteger;
 import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -35,20 +34,27 @@ class SigieAlumniApiApplicationTests {
     @Rollback(false)
     public void testGuardarConsulta() {
         //Creación de espacios necesarios para salvar
-        PlanEstudio planEstudio = new PlanEstudio();
+        PlanEstudio planEstudio = new PlanEstudio(1,
+                "600002",
+                "Informática Empresarial",
+                1997,new PersonaCoordinadora(),new ArrayList<AreaDisciplinar>(),new ArrayList<PersonaGraduada>());
         List<PersonaGraduada> personaGraduada = new ArrayList<PersonaGraduada>();
         List<RespuestaMejora> respuestas = new ArrayList<RespuestaMejora>();
         //Guarda con area disciplinar ya existente
-        AreaDisciplinar areaDisciplinar = new AreaDisciplinar(0, "Programacion");
+        AreaDisciplinar areaDisciplinar = new AreaDisciplinar(2, "Programación y Desarrollo de Software");
         //La fecha de publicación será la fecha actual
         Date fechaPublicacion = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         //Creacion de las Categorias
         List<CategoriaConsulta> categoriasConsulta = new ArrayList<CategoriaConsulta>();
-        CategoriaConsulta categoria = new CategoriaConsulta(5, "Técnicas");
+        CategoriaConsulta categoria = new CategoriaConsulta(5, "Metodologías");
         categoriasConsulta.add(categoria);
         //Creación de Recinto de Turrubares
         List<Recinto> recintos = new ArrayList<Recinto>();
-        Recinto recintoTurrubares = new Recinto(0, "Turrubares", "Turrubares Centro", "89475035", "turrubares.ucr.ac.cr",
+        Recinto recintoTurrubares = new Recinto(3,
+                "Recinto de Guapiles",
+                "Paraíso de Cartago, del parque de Paraíso, un kilometro y medio carretera a Orosi",
+                "25110000",
+                "https://paraiso.ucr.ac.cr/",
                 personaGraduada);
         recintos.add(recintoTurrubares);
         //Creación de la Consulta de Mejora

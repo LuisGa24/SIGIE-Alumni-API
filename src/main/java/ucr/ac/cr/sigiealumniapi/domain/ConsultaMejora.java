@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class ConsultaMejora {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String titulo;
     private String objetivo;
@@ -22,7 +22,8 @@ public class ConsultaMejora {
     private String apellidosPersonaResponsableConsulta;
     private String correoPersonaResponsableConsulta;
 
-    @ManyToMany(cascade = {CascadeType.ALL}) /////////////////////////////////////////////////////////////////////////////
+    @ManyToMany
+//(cascade = {CascadeType.MERGE}) /////////////////////////////////////////////////////////////////////////////
     @JoinTable(
             name = "consultamejora_recinto",
             joinColumns = {@JoinColumn(name = "consultamejora_id")},
@@ -30,14 +31,17 @@ public class ConsultaMejora {
     )
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id") //Evita los ciclos de reperencias circulares
+            property = "id",
+            scope = Recinto.class) //Evita los ciclos de reperencias circulares
     private List<Recinto> recintos;
 
-    @ManyToOne(cascade = {CascadeType.ALL}) /////////////////////////////////////////////////////////////////////////////
+    @ManyToOne
+//(cascade = {CascadeType.MERGE}) /////////////////////////////////////////////////////////////////////////////
     @JoinColumn(name = "area_disciplinar_id")
     private AreaDisciplinar areaDisciplinar;
 
-    @ManyToOne(cascade = {CascadeType.ALL}) /////////////////////////////////////////////////////////////////////////////
+    @ManyToOne
+//(cascade = {CascadeType.MERGE}) /////////////////////////////////////////////////////////////////////////////
     @JoinColumn(name = "plan_estudio_id")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
