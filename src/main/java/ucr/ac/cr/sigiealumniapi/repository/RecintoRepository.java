@@ -5,4 +5,5 @@ import ucr.ac.cr.sigiealumniapi.domain.Recinto;
 
 
 public interface RecintoRepository extends JpaRepository<Recinto, Integer> {
+
 }

@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 public class PersonaGraduada {
     @Id
-    private String id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
     private String nombre;
     private String apellidos;
     private int anoGraduacion;
@@ -18,11 +19,12 @@ public class PersonaGraduada {
     private String telefono;
     private String correo;
 
-    @ManyToMany(mappedBy = "personasGraduadas")
+    @ManyToOne
+    @JoinColumn(name = "recinto_id")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id") //Evita los ciclos de reperencias circulares
-    private List<Recinto> recintos;
+    private Recinto recinto;
 
     @ManyToMany(mappedBy = "personasGraduadas")
     @JsonIdentityInfo(
@@ -30,7 +32,7 @@ public class PersonaGraduada {
             property = "id") //Evita los ciclos de reperencias circulares
     private List<PlanEstudio> carreras;
 
-    public PersonaGraduada(String id, String nombre, String apellidos, int anoGraduacion, String numCarne, Number promedioPonderado, String telefono, String correo, List<Recinto> recintos, List<PlanEstudio> carreras) {
+    public PersonaGraduada(int id, String nombre, String apellidos, int anoGraduacion, String numCarne, Number promedioPonderado, String telefono, String correo, Recinto recinto, List<PlanEstudio> carreras) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -39,7 +41,7 @@ public class PersonaGraduada {
         this.promedioPonderado = promedioPonderado;
         this.telefono = telefono;
         this.correo = correo;
-        this.recintos = recintos;
+        this.recinto = recinto;
         this.carreras = carreras;
     }
 
@@ -47,11 +49,11 @@ public class PersonaGraduada {
 
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -111,12 +113,12 @@ public class PersonaGraduada {
         this.correo = correo;
     }
 
-    public List<Recinto> getRecintos() {
-        return recintos;
+    public Recinto getRecinto() {
+        return recinto;
     }
 
-    public void setRecintos(List<Recinto> recintos) {
-        this.recintos = recintos;
+    public void setRecinto(Recinto recinto) {
+        this.recinto = recinto;
     }
 
     public List<PlanEstudio> getCarreras() {

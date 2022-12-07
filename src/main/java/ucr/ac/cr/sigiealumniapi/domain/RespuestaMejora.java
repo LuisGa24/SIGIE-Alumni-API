@@ -3,15 +3,13 @@ package ucr.ac.cr.sigiealumniapi.domain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class RespuestaMejora {
     @Id
-    private String id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
     private String propuesta;
 
 
@@ -41,7 +39,7 @@ public class RespuestaMejora {
     public RespuestaMejora() {
     }
 
-    public RespuestaMejora(String id, String propuesta, CategoriaConsulta categoriaConsulta, ConsultaMejora consultaMejora, PersonaGraduada autor) {
+    public RespuestaMejora(int id, String propuesta, CategoriaConsulta categoriaConsulta, ConsultaMejora consultaMejora, PersonaGraduada autor) {
         this.id = id;
         this.propuesta = propuesta;
         this.categoriaConsulta = categoriaConsulta;
@@ -49,11 +47,11 @@ public class RespuestaMejora {
         this.autor = autor;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

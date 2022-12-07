@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 public class PlanEstudio {
     @Id
-    private String id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
     private String codCarrera;
     private String nombreCarrera;
     private int anoAprobacion;
@@ -39,7 +40,7 @@ public class PlanEstudio {
     public PlanEstudio() {
     }
 
-    public PlanEstudio(String id, String codCarrera, String nombreCarrera, int anoAprobacion, PersonaCoordinadora coordinador, List<AreaDisciplinar> areasDisciplinares, List<PersonaGraduada> personasGraduadas) {
+    public PlanEstudio(int id, String codCarrera, String nombreCarrera, int anoAprobacion, PersonaCoordinadora coordinador, List<AreaDisciplinar> areasDisciplinares, List<PersonaGraduada> personasGraduadas) {
         this.id = id;
         this.codCarrera = codCarrera;
         this.nombreCarrera = nombreCarrera;
@@ -49,11 +50,11 @@ public class PlanEstudio {
         this.personasGraduadas = personasGraduadas;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -104,4 +105,5 @@ public class PlanEstudio {
     public void setPersonasGraduadas(List<PersonaGraduada> personasGraduadas) {
         this.personasGraduadas = personasGraduadas;
     }
+
 }

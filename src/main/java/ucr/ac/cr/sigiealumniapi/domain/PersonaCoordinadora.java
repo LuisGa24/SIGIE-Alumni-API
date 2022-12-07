@@ -3,15 +3,14 @@ package ucr.ac.cr.sigiealumniapi.domain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 public class PersonaCoordinadora {
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
     private String nombre;
     private String apellidos;
     private String correoInstitucional;
@@ -27,7 +26,7 @@ public class PersonaCoordinadora {
     public PersonaCoordinadora() {
     }
 
-    public PersonaCoordinadora(String id, String nombre, String apellidos, String correoInstitucional, String correoPersonal, Date fechaInicio, PlanEstudio planEstudio) {
+    public PersonaCoordinadora(int id, String nombre, String apellidos, String correoInstitucional, String correoPersonal, Date fechaInicio, PlanEstudio planEstudio) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -37,11 +36,11 @@ public class PersonaCoordinadora {
         this.planEstudio = planEstudio;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

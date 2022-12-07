@@ -1,27 +1,30 @@
 package ucr.ac.cr.sigiealumniapi.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class CategoriaConsulta {
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private int id;
     private String nombre;
 
     public CategoriaConsulta() {
     }
 
-    public CategoriaConsulta(String id, String nombre) {
+    public CategoriaConsulta(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
